@@ -4,14 +4,13 @@ import Select from "react-select";
 //have input - takes the number and call handle submit depending on the units selected
 //have helper function that calculated cups to grams
 //helper function that calculates grams to cups
-//cups to -grams -ounces -teaspoon tblespoon pints qts gallon
-
-const dropDownOptions =[
+//cups to -grams -ounces -teaspoon -tablespoon -pints -quarts -gallon
+//
+const dropDownOptions = [
     {label: 'Cups', value: 'Cups'},
     {label: 'Grams', value: 'Grams'},
     {label: 'Ounces', value: 'Ounces'},
     {label: 'Tablespoons', value: 'Tablespoons'}
-    // {label: 'Liters', value: 'Liters'}
 ];
 
 function Calculator(props) {
@@ -20,69 +19,78 @@ function Calculator(props) {
     const [convertUnitTo, setConvertUnitTo] = useState('');
     const [conversion, setConversion] = useState([]);
 
-  
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         conversionCalculator(value)  
     }
 
     const conversionCalculator = (value) => {
+        let conversion
+        //define glabal variables
          //returns the same value if converting from unit to same unit
-        if (convertUnitFrom === convertUnitTo) {
-            setConversion(value)
-        }
-        //coverts from cups to grams
-        if (convertUnitFrom === "Cups" && convertUnitTo === "Grams") {
-            let conversion = convertFromCupsToGrams(value);
-            setConversion(conversion)
-        }
-        //coverts from grams to cups
-        if (convertUnitFrom === "Grams" && convertUnitTo === "Cups") {
-            let conversion = convertFromGramsToCups(value);
-            setConversion(conversion)
-        }
-        //converst cups to ounces
-        if (convertUnitFrom === "Cups" && convertUnitTo === "Ounces") {
-            let conversion = convertFromCupsToOunces(value);
-            setConversion(conversion)
-        }
-        //converts from ounces to cups
-        if (convertUnitFrom === "Ounces" && convertUnitTo === "Cups") {
-            let conversion = convertFromOuncesToCups(value);
-            setConversion(conversion)
-        }
-        //converts from cups to tablespoons
-        if (convertUnitFrom === "Cups" && convertUnitTo === "Tablespoons") {
-            let conversion = convertFromCupsToTablespoons(value);
-            setConversion(conversion)
-        }
-        //convert from tablespoons to cups
-        if (convertUnitFrom === "Tablespoons" && convertUnitTo === "Cups") {
-            let conversion = convertFromTablespoonsToCups(value);
-            setConversion(conversion)
-        }
-        //convert from ounces to grams
-        if (convertUnitFrom === "Ounces" && convertUnitTo === "Grams") {
-            let conversion = convertFromOuncesToGrams(value);
-            setConversion(conversion)
-        }
-        //convert from grams to ounces
-        if (convertUnitFrom === "Grams" && convertUnitTo === "Ounces") {
-            let conversion = convertFromGramsToOunces(value);
-            setConversion(conversion)
-        }
-        //convert from ounces to tablespoons
-        if (convertUnitFrom === "Ounces" && convertUnitTo === "Tablespoons") {
-            let conversion = convertFromOuncesToTablespoons(value);
-            setConversion(conversion)
-        }
-        //convert from tablespoons to ounces
-        if (convertUnitFrom === "Tablespoons" && convertUnitTo === "Ounces") {
-            let conversion = convertFromTablespoonsToOunces(value);
-            setConversion(conversion)
-        }
+            if (convertUnitFrom === convertUnitTo) {
+                setConversion(value)
+            }
+            //coverts from cups to grams
+            if (convertUnitFrom === "Cups" && convertUnitTo === "Grams") {
+                conversion = convertFromCupsToGrams(value);
+                setConversion(conversion)
+            }
+            //coverts from grams to cups
+            if (convertUnitFrom === "Grams" && convertUnitTo === "Cups") {
+                conversion = convertFromGramsToCups(value);
+                setConversion(conversion)
+            }
+            //converst cups to ounces
+            if (convertUnitFrom === "Cups" && convertUnitTo === "Ounces") {
+                conversion = convertFromCupsToOunces(value);
+                setConversion(conversion)
+            }
+            //converts from ounces to cups
+            if (convertUnitFrom === "Ounces" && convertUnitTo === "Cups") {
+                conversion = convertFromOuncesToCups(value);
+                setConversion(conversion)
+            }
+            //converts from cups to tablespoons
+            if (convertUnitFrom === "Cups" && convertUnitTo === "Tablespoons") {
+                conversion = convertFromCupsToTablespoons(value);
+                setConversion(conversion)
+            }
+            //convert from tablespoons to cups
+            if (convertUnitFrom === "Tablespoons" && convertUnitTo === "Cups") {
+                conversion = convertFromTablespoonsToCups(value);
+                setConversion(conversion)
+            }
+            //convert from ounces to grams
+            if (convertUnitFrom === "Ounces" && convertUnitTo === "Grams") {
+                conversion = convertFromOuncesToGrams(value);
+                setConversion(conversion)
+            }
+            //convert from grams to ounces
+            if (convertUnitFrom === "Grams" && convertUnitTo === "Ounces") {
+                conversion = convertFromGramsToOunces(value);
+                setConversion(conversion)
+            }
+            //convert from ounces to tablespoons
+            if (convertUnitFrom === "Ounces" && convertUnitTo === "Tablespoons") {
+                conversion = convertFromOuncesToTablespoons(value);
+                setConversion(conversion)
+            }
+            //convert from tablespoons to ounces
+            if (convertUnitFrom === "Tablespoons" && convertUnitTo === "Ounces") {
+                conversion = convertFromTablespoonsToOunces(value);
+                setConversion(conversion)
+            }
+            //convert grams to tablespoons
+            if (convertUnitFrom === "grams" && convertUnitFrom === "tablespoons") {
+                conversion = convertFromGramsToTablespoons(value)
+                setConversion(conversion)
+            }
+            //convert from tablespoons to grams
+            if (convertUnitFrom === "tablespoons" && convertUnitFrom === "grams") {
+                conversion = convertFromTablespoonsToGrams(value)
+                setConversion(conversion)
+            }
     }
 
     const convertFromCupsToGrams = (cups) => {
@@ -136,7 +144,6 @@ function Calculator(props) {
     const convertFromTablespoonsToGrams = (tablespoons) => {
         return (tablespoons * 15).toFixed(2)
     }
-
 
     return (
         <div>
